@@ -1,0 +1,15 @@
+La llave foránea project_id quedó en la entidad Tarea,
+porque cada tarea debe estar asociada a un solo proyecto, 
+mientras que un proyecto puede tener muchas tareas. 
+Por eso la referencia se guarda en la tabla de tareas, 
+para que el sistema sepa a qué proyecto pertenece cada una. 
+Para cuidar la integridad de los datos se configuró la relación de forma que, 
+si se elimina un proyecto, también se eliminen automáticamente todas sus tareas, 
+evitando que queden registros sin dueño. 
+Esto es diferente a solo quitar una tarea de la lista del proyecto, 
+ya que en ese caso se elimina solo esa tarea específica, mientras que al borrar el proyecto completo se eliminan todas las tareas relacionadas. 
+En cuanto a las consultas, 
+el método para buscar tareas por estado funciona gracias a Spring Data JPA,
+que a partir del nombre del método genera la consulta automáticamente, 
+algo equivalente a hacer en SQL un SELECT * FROM tarea WHERE estado = 'Terminado';,
+pero sin necesidad de escribir el SQL directamente.
